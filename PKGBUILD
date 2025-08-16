@@ -1,3 +1,4 @@
+# Maintainer: Vendetta1871 conqueror.v.v.v.v.v@gmail.com
 
 pkgname=vendetta-rice
 pkgver=1.0
