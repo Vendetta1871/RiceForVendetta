@@ -58,3 +58,5 @@ pkgbase = vendetta-rice
 	sha256sums = e6966a80405eb3bd6ab1c2ea78577c134fe20b28b9c454bd5fdc3829c400427b
 
 pkgname = vendetta-rice
+
+#

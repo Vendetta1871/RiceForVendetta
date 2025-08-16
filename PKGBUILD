@@ -74,3 +74,5 @@ package() {
   tar -xzf "$srcdir/dotfiles.tar.gz" -C "$pkgdir/usr/share/$pkgname"
   find "$pkgdir/usr/share/$pkgname" -type f -name "*.sh" -exec chmod +x {} \;
 }
+
+#
