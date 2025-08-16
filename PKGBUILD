@@ -4,7 +4,7 @@ pkgver=1.0
 pkgrel=1
 pkgdesc="Hyprland gruvbox themed rice from Vendetta1871"
 arch=('any')
-url="https://example.com"
+url="https://github.com/Vendetta1871/RiceForVendetta"
 license=('MIT')
 
 depends=(
@@ -45,7 +45,6 @@ depends=(
 	'fcitx5-nord'  				# Nord theme for fcitx5
 	'noto-fonts-cjk'  			# CJK fonts from Noto
 	'wqy-zenhei'  				# Chinese font for Linux
-	'xfce-polkit'  				# GUI authentication agent for PolicyKit
 	# AUR depencies
 	'rofi-wayland'  			# Rofi launcher for Wayland
 	'rofi-power-menu'  			# Power menu script for Rofi
@@ -57,19 +56,17 @@ depends=(
 )    
 
 makedepends=('yay')
-source=("vendetta-rice-backup.sh" "vendetta-rice-install.sh" "dotfiles")
+source=("backup.sh" "install.sh" "dotfiles.tar.gz")
 sha256sums=('SKIP' 'SKIP' 'SKIP')
 
 package() {
+  install -d "$pkgdir/usr/share/$pkgname"
+
   # move scripts to /usr/bin
-  install -Dm755 "$srcdir/vendetta-rice-backup.sh" "$pkgdir/usr/bin/vendetta-rice"
-  install -Dm755 "$srcdir/vendetta-rice-install.sh" "$pkgdir/usr/bin/vendetta-rice"
+  install -Dm755 "$srcdir/backup.sh" "$pkgdir/usr/bin/vendetta-rice/vendetta-rice-backup.sh"
+  install -Dm755 "$srcdir/install.sh" "$pkgdir/usr/bin/vendetta-rice/vendetta-rice-install.sh"
 
   # move additional files to /usr/share/vendetta-rice/
-  SRC_DIR="$srcdir/dotfiles"
-  DEST_DIR="$pkgdir/usr/share/vendetta-rice/dotfiles"
-  mkdir -p "$DEST_DIR"
-  cp -a "$SRC_DIR/." "$DEST_DIR/"
-
-  find "$DEST_DIR" -type f -exec sh -c 'head -n1 "$1" 2>/dev/null | grep -q "^#!" && chmod +x "$1"' _ {} \;
+  tar -xzf "$srcdir/dotfiles.tar.gz" -C "$pkgdir/usr/share/$pkgname"
+  find "$pkgdir/usr/share/$pkgname" -type f -name "*.sh" -exec chmod +x {} \;
 }
