@@ -37,8 +37,9 @@ while read -r ITEM || [[ -n "$ITEM" ]]; do
     cp -a "$SRC" "$DEST"
 done < "$DOTFILES_LIST"
 
+sh "$HOME/.config/waybar/get_network_interfaces.sh"
 mkdir -p "$HOME/Pictures/screenshots"
-sudo chsh -s $(which zsh)
+chsh -s $(which zsh)
 
 # -----------------------
 # 3. Reboot

@@ -86,7 +86,7 @@
         "tooltip-format": "{:%A, %Y %B %d}"
     },
     "network": {
-        "interface": ["wlp1s0", "lo"],
+        //"interface": include("interfaces.json"),
         "interval": 5,
         "format": "{ifname}",
         "format-wifi": " {bandwidthUpBytes}  {bandwidthDownBytes}",
@@ -104,6 +104,9 @@
         ],
         "on-click": "kitty -e nmtui"
     },
+    "include": [
+        "~/.config/waybar/network_interfaces.json"
+    ],
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
         "format": "{icon} {volume}% {format_source}",

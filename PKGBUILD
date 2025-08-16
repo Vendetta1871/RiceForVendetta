@@ -26,6 +26,7 @@ depends=(
 	'slurp'  					# select region of the screen for Wayland
 	'wl-clipboard'  			# clipboard utilities for Wayland
 	'starship'  				# customizable prompt for shells
+	'imagemagick'  			# draw pictures in terminal	
 	'fastfetch'  				# fast system information tool
 	'btop'  					# resource monitor with a graphical interface
 	'pavucontrol'  				# GUI for managing PulseAudio
@@ -57,14 +58,16 @@ depends=(
 
 makedepends=('yay')
 source=("backup.sh" "install.sh" "dotfiles.tar.gz")
-sha256sums=('SKIP' 'SKIP' 'SKIP')
+sha256sums=('141c3c0eb5a3cd50d463f0a6d0fa5fd52fd27318c601b55dfd2fb71ad42b7297'
+            'f026037d1e39e668141a6791500e5bcfd03cb49ea99cb4b0e1d3cba7cd8eb9f3'
+            'e6966a80405eb3bd6ab1c2ea78577c134fe20b28b9c454bd5fdc3829c400427b')
 
 package() {
   install -d "$pkgdir/usr/share/$pkgname"
 
   # move scripts to /usr/bin
-  install -Dm755 "$srcdir/backup.sh" "$pkgdir/usr/bin/vendetta-rice/vendetta-rice-backup.sh"
-  install -Dm755 "$srcdir/install.sh" "$pkgdir/usr/bin/vendetta-rice/vendetta-rice-install.sh"
+  install -Dm755 "$srcdir/backup.sh" "$pkgdir/usr/bin/vendetta-rice-backup"
+  install -Dm755 "$srcdir/install.sh" "$pkgdir/usr/bin/vendetta-rice-install"
 
   # move additional files to /usr/share/vendetta-rice/
   tar -xzf "$srcdir/dotfiles.tar.gz" -C "$pkgdir/usr/share/$pkgname"
